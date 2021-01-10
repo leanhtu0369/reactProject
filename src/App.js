@@ -2,7 +2,7 @@ import React from 'react';
 import data from "./favorites"; 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faArrowLeft, faEllipsisV } from '@fortawesome/free-solid-svg-icons'
-import './App.css';
+import './App.scss';
 
 const favorites = data.favorites;
 
@@ -17,8 +17,8 @@ class App extends React.Component {
         </div>
 
         <div className="favorite__playlist">
-          {favorites.map(item => (
-            <div className="favorite__playlist__item">
+          {favorites.map((item, index) => (
+            <div key={index} className="favorite__playlist__item">
               <div className="thumbnail">
               <img src={item.src} alt={item.songName} />
               </div>
