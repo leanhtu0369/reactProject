@@ -1,0 +1,46 @@
+{
+  "favorites": [
+    {
+      "id": 1,
+      "src": "imgs/snowflake.jpg",
+      "songName": "living nightmare",
+      "singerName": "snowflake",
+      "timeline": "2:58"
+    },
+    {
+      "id": 2,
+      "src": "imgs/dubstep2.jpg",
+      "songName": "dubstep",
+      "singerName": "bensound",
+      "timeline": "2:04"
+    },
+    {
+      "id": 3,
+      "src": "imgs/track3.jpeg",
+      "songName": "42",
+      "singerName": "secret of life",
+      "timeline": "1:18"
+    },
+    {
+      "id": 4,
+      "src": "imgs/retrosoul.jpg",
+      "songName": "retrosoul",
+      "singerName": "bensound",
+      "timeline": "3:36"
+    },
+    {
+      "id": 5,
+      "src": "imgs/snowflake2.jpg",
+      "songName": "holiday funky blues",
+      "singerName": "snowflake",
+      "timeline": "2:55"
+    },
+    {
+      "id": 6,
+      "src": "imgs/happyrock.jpg",
+      "songName": "happy rock",
+      "singerName": "bensound",
+      "timeline": "1:45"
+    }
+  ]
+}
