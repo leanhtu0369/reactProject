@@ -22,6 +22,8 @@ class Todo extends Component {
       currentTag: 0,
       currentStatus: 0, // ALL TODO REJECTED IS_PENDING IS_COMPLETE
     }
+
+    this.inputAddTodo = React.createRef()
   }
 
   get counter() {
@@ -69,21 +71,23 @@ class Todo extends Component {
     return max + 1
   }
 
-  addToDo = () => {
-    const inputAdd = document.querySelector('.todo__body__add input')
+  addTodo = () => {
+    // const inputAdd = document.querySelector('.todo__body__add input')
     // console.log(inputAdd.value.length);
     // console.log(this.inputAdd);
+    // console.log(this.inputAddTodo.current.value)
+    const valueAddTodo = this.inputAddTodo.current.value
 
-    if (inputAdd.value.length === 0) {
+    if (valueAddTodo.length === 0) {
       alert('What do you need to do?')
     } else if(this.state.currentTag === 0) {
       alert('Please choose a tag')
     } else {
       const item = {
         id: this.generateId(),
-        name: inputAdd.value,
+        name: valueAddTodo,
         tags: this.state.currentTag,
-        status: 0
+        status: 1
       }
       this.state.filteredTasks.push(item)
 
@@ -93,12 +97,12 @@ class Todo extends Component {
     }
   }
 
-  deleteToDo = id => {
-    const newToDoList = this.state.todoList.filter(item => item.id !== id)
-    // console.log(newToDoList);
+  deleteTodo = id => {
+    const newTodoList = this.state.filteredTasks.filter(item => item.id !== id)
+    // console.log(newTodoList);
 
     this.setState({
-      todoList: [...newToDoList]
+      filteredTasks: [...newTodoList]
     })
   }
 
@@ -111,6 +115,15 @@ class Todo extends Component {
     })
   }
 
+  onKeyEnter = event => {
+    // console.log(event.keyCode);
+    // event.keyCode === 13 ? this.addTodo() : ''
+
+    if (event.keyCode === 13) {
+      this.addTodo()
+    }
+  }
+
   render() {
     return (
       <div className="todo">
@@ -118,9 +131,16 @@ class Todo extends Component {
 
         <div className="todo__body">
           <div className="todo__body__add">
-            <input name="" id="" className="" type="text" placeholder="What do you need to do?" />
+            <input
+              name=""
+              className=""
+              type="text"
+              placeholder="What do you need to do?"
+              onKeyUp={this.onKeyEnter}
+              ref={this.inputAddTodo}
+            />
 
-            <button type="button" name="" id="" onClick={ this.addToDo }>
+            <button type="button" name="" id="" onClick={this.addTodo}>
               <FontAwesomeIcon icon={faPlus}/>
             </button>
           </div>
@@ -129,7 +149,7 @@ class Todo extends Component {
             <MyTodoContext.Provider
               value={{
                 state: this.state,
-                deleteToDo: this.deleteToDo,
+                deleteTodo: this.deleteTodo,
                 changeStatus: this.changeStatus,
                 setFilteredTasks: this.setFilteredTasks,
                 setCurrentTag: this.setCurrentTag,

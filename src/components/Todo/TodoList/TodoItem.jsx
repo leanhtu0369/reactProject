@@ -16,12 +16,12 @@ class TodoItem extends Component {
       <MyTodoContext.Consumer>
         {
           value => (
-            <div className= { completed ? 'item completed' : 'item' }>
+            <div className= { completed === 2 ? 'item completed' : 'item' }>
               <span className="status" onClick={ () => value.changeStatus(item.id) }>
                 { completed === 2 ? <FontAwesomeIcon icon={faCheck}/> : '' }
               </span>
               <p className="name">{ item.name }</p>
-              <span className="close" onClick={ () => value.deleteToDo(item.id) }><FontAwesomeIcon icon={faTimes}/></span>
+              <span className="close" onClick={ () => value.deleteTodo(item.id) }><FontAwesomeIcon icon={faTimes}/></span>
             </div>
           )
         }
