@@ -1,12 +1,18 @@
-import axios from "axios";
 import React, { useEffect, useState } from "react";
+
+import axios from "axios";
+
+import { useDispatch } from "react-redux";
+
 import { Link } from "react-router-dom";
+import { setUser } from "../redux/state/user";
 
 const Home = () => {
   const [posts, setPosts] = useState([])
   const [photos, setPhotos] = useState([])
-
   const [isLoading, setIsLoading] = useState(true)
+
+  const dispatch = useDispatch()
 
   const fetchPosts = () => {
     axios.get('https://jsonplaceholder.typicode.com/posts?_start=10&_limit=5')
@@ -30,6 +36,12 @@ const Home = () => {
       })
   }
 
+  const logout = () => {
+    dispatch(
+      setUser(null)
+    )
+  }
+
   useEffect(() => {
     fetchPosts()
     fetchPhotos()
@@ -38,6 +50,8 @@ const Home = () => {
   return(
     <>
       <h1>Home page</h1>
+
+      <button onClick={logout}>Logout</button>
 
       <h2>Danh sách bài viết nổi bật</h2>
       {

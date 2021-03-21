@@ -4,6 +4,17 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
+import { getUserFormLocalStorage } from './utils/localStorage';
+
+import store from './redux/store';
+import { setUser } from './redux/state/user';
+
+const user = getUserFormLocalStorage()
+
+store.dispatch(
+  setUser(user)
+)
+
 ReactDOM.render(
   <React.StrictMode>
     <App />

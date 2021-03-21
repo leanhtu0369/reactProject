@@ -2,10 +2,6 @@ import React from "react";
 import "./scss/index.scss";
 import 'bootstrap/dist/css/bootstrap.min.css'
 
-import Login from "./pages/Login";
-import Home from "./pages/Home";
-import PostDetail from "./pages/PostDetail";
-
 import {
   BrowserRouter,
   Switch,
@@ -13,15 +9,22 @@ import {
   Link
 } from "react-router-dom";
 
+import { router } from "./router";
+import { Provider } from "react-redux";
+import store from "./redux/store";
+
+import BackgroundApp from "./components/BackgroundApp";
+
 const App = () => {
   return(
-    <>
+    <Provider store={store}>
       <BrowserRouter>
         <Link to="/">Go to Home</Link>
+        <Link to="/posts">Go to Posts</Link>
         <Link to="/login">Go to Login</Link>
 
         <Switch>
-          <Route path="/" exact>
+          {/* <Route path="/" exact>
             <Home></Home>
           </Route>
 
@@ -31,10 +34,25 @@ const App = () => {
 
           <Route path="/posts/:id">
             <PostDetail></PostDetail>
-          </Route>
+          </Route> */}
+
+          {
+            router.map((CurrentRoute, index) => (
+              <Route 
+                path={CurrentRoute.path}
+                exact={CurrentRoute.exact}
+                key={index}
+              >
+                {CurrentRoute.Component}
+              </Route>
+            ))
+          }
         </Switch>
+
+        <BackgroundApp />
       </BrowserRouter>
-    </>
+
+    </Provider>
   )
 }
 

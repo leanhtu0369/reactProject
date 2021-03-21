@@ -1,9 +1,19 @@
-import axios from "axios";
 import React, { useState } from "react";
+import axios from "axios";
+
+import { useHistory } from "react-router";
+
+import { setUser } from "../redux/state/user";
+import { useDispatch, useSelector } from "react-redux";
 
 const Login = () => {
+  const history = useHistory()
+  const dispatch = useDispatch()
+
   const [userName, setUserName] = useState('')
   const [userPass, setUserPass] = useState('')
+
+  const user = useSelector(store => store.user.currentUser)
 
   const handleOnchangePass = (event) => {
     setUserPass(event.target.value)
@@ -22,7 +32,14 @@ const Login = () => {
 
     axios.get(`https://jsonplaceholder.typicode.com/users/${id}`)
       .then(response => {
-        console.log('response', response.data)
+        // console.log('response', response.data)
+        const user = response.data
+
+        dispatch(
+          setUser(user)
+        )
+
+        history.push("/")
       })
       .catch(err => {
         alert('error')
