@@ -1,6 +1,7 @@
 import React from "react";
-import "./scss/index.scss";
-import 'bootstrap/dist/css/bootstrap.min.css'
+import "./style/index.scss";
+import { DatePicker } from 'antd';
+
 
 import {
   BrowserRouter,
@@ -22,6 +23,7 @@ const App = () => {
         <Link to="/">Go to Home</Link>
         <Link to="/posts">Go to Posts</Link>
         <Link to="/login">Go to Login</Link>
+        <Link to="/antd">Go to Antd</Link>
 
         <Switch>
           {/* <Route path="/" exact>
@@ -50,8 +52,7 @@ const App = () => {
         </Switch>
 
         <BackgroundApp />
-      </BrowserRouter>
-
+      </BrowserRouter>      
     </Provider>
   )
 }

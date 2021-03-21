@@ -3,6 +3,8 @@ import Home from "./pages/Home";
 import Login from "./pages/Login";
 import Posts from "./pages/Posts";
 import PostDetail from "./pages/PostDetail";
+import Antd from "./components/Antd";
+
 
 export const router = [
   {  
@@ -27,5 +29,11 @@ export const router = [
     path: '/posts/:id',
     exact: true,
     Component: <BasicAuth Component={PostDetail} routeName="PostDetail"/>
+  },
+
+  {  
+    path: '/antd',
+    exact: true,
+    Component: <Antd routeName="Antd"/>
   }
 ]
