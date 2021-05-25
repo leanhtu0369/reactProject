@@ -1,3 +1,4 @@
+import { Pagination } from "antd";
 import axios from "axios";
 import React, { useEffect, useMemo, useState } from "react";
 
@@ -62,6 +63,10 @@ const Posts = () => {
     fetchData()
   }, [])
 
+  function onShowSizeChange(current, pageSize) {
+    console.log(current, pageSize);
+  }
+
   return (
     <>
       <div className="container">
@@ -90,6 +95,13 @@ const Posts = () => {
             <li className="page-item" onClick={goToNext}><span className="page-link">Next</span></li>
           </ul>
         </nav>
+
+        <Pagination
+          showSizeChanger
+          onShowSizeChange={onShowSizeChange}
+          defaultCurrent={currentPage}
+          total={100}
+        />
       </div>
     </>
   )
