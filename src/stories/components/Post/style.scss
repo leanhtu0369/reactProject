@@ -1,0 +1,147 @@
+body {
+  background-color: #E5E5E5;
+}
+
+.post {
+  background-color: #fff;
+  border-radius: 8px;
+
+  &__header {
+    color: #050505;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 15px;
+    border-bottom: 1px solid #DDDDDD;
+
+    &__title {
+      font-size: 20px;
+      font-weight: 500;
+    }
+
+    &__control {
+      display: flex;
+      align-items: center;
+
+      .post-control {
+        background: #E4E6EB;
+        border-radius: 5px;
+        padding: 5px 10px;
+        display: flex;
+        align-items: center;
+        cursor: pointer;
+
+        &:not(:first-child) {
+          margin-left: 10px;
+        }
+
+        .icon {
+
+        }
+
+        .name {
+          font-weight: 500;
+          font-size: 15px;
+          padding-left: 5px;
+        }
+      }
+    }
+  }
+
+  &__view-mode {
+    padding: 0 20px;
+    display: flex;
+    align-items: center;
+
+    .mode {
+      color: #65676B;  
+      padding: 15px;
+      display: flex;
+      align-items: center;
+      border-bottom: 1px solid transparent;
+      cursor: pointer;
+
+      .icon {
+        width: 20px;
+        height: 20px;
+        position: relative;
+      }
+  
+      .name {
+        padding-left: 10px;
+        font-weight: 500;
+        font-size: 15px;
+      }
+
+      &.list .icon {
+
+        span {
+          border: 1px solid #65676B;
+          position: absolute;
+          left: 0;
+          right: 0;
+
+          &:nth-child(1) {
+            top: 0;
+          }
+  
+          &:nth-child(2) {
+            top: 50%;
+            transform: translateY(-50%);
+          }
+  
+          &:nth-child(3) {
+            bottom: 0;
+          }
+
+          &:nth-child(4) {
+            display: none;
+          }
+        } 
+      } 
+  
+      &.grid .icon {
+  
+        span {
+          background: #65676B;
+          position: absolute;
+          width: 8px;
+          height: 8px;
+
+          &:nth-child(1) {
+            top: 0;
+            left: 0;
+          }
+  
+          &:nth-child(2) {
+            top: 0;
+            right: 0;
+          }
+  
+          &:nth-child(3) {
+            bottom: 0;
+            left: 0;
+          }
+
+          &:nth-child(4) {
+            bottom: 0;
+            right: 0;
+          }
+        } 
+      }
+
+      &.active {
+        color: #1876F2;
+        border-bottom-color: #1876F2;
+
+        &.list .icon span {
+          border-color: #1876F2;
+        }
+
+        &.grid .icon span {
+          background-color: #1876F2;
+        }
+      }
+    }
+  }
+}
