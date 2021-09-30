@@ -2,12 +2,13 @@ import React, { Component } from 'react'
 
 class Count extends Component {
   render() {
+    const { counterCompleted, counter } = this.props
 
     return(
       <>
-        {this.props.counterCompleted}
+        {counterCompleted}
         &nbsp;/&nbsp;
-        {this.props.counter}
+        {counter}
         &nbsp;
         Completed
       </>

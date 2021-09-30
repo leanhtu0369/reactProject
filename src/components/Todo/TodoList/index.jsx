@@ -12,13 +12,16 @@ class TodoList extends Component {
       <MyTodoContext.Consumer>
         {
           value => (
-            value.state.filteredTasks.map((item, index) => {
-              return <TodoItem
-                key={index}
-                item={item}
-                changeStatus={this.changeStatus}
-              />
-            })
+            value.state.filteredTasks.length ?
+              value.state.filteredTasks.map((item, index) => {
+                return <TodoItem
+                  key={index}
+                  item={item}
+                  changeStatus={this.changeStatus}
+                />
+              })
+              :
+              <p>Todo list is emty</p>
           )
         }
       </MyTodoContext.Consumer>

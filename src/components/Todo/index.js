@@ -20,7 +20,7 @@ class Todo extends Component {
       todoList,
       filteredTasks: todoList,
       currentTag: 0,
-      currentStatus: 0, // ALL TODO REJECTED IS_PENDING IS_COMPLETE
+      currentStatus: 0,
     }
 
     this.inputAddTodo = React.createRef()
@@ -38,8 +38,6 @@ class Todo extends Component {
     const newData = this.state.todoList.filter(item =>
       (tagId === 0 ? true : item.tags === tagId) && (statusId === 0 ? true : item.status === statusId)
     )
-    // console.log(tagId, statusId, newData);
-    // console.log(this);
 
     this.setState({
       filteredTasks: newData,
@@ -49,12 +47,10 @@ class Todo extends Component {
   }
 
   setCurrentTag(id) {
-    // console.log(id);
     this.setFilteredTasks({
       tagId: id,
       statusId: this.state.currentStatus
     })
-    // console.log(id, this.state.currentStatus)
   }
 
   setCurrentStatus(id) {
@@ -62,7 +58,6 @@ class Todo extends Component {
       tagId: this.state.currentTag,
       statusId: id
     })
-    // console.log(this.state.currentTag, id)
   }
 
   generateId = () => {
@@ -71,11 +66,7 @@ class Todo extends Component {
     return max + 1
   }
 
-  addTodo = () => {
-    // const inputAdd = document.querySelector('.todo__body__add input')
-    // console.log(inputAdd.value.length);
-    // console.log(this.inputAdd);
-    // console.log(this.inputAddTodo.current.value)
+  addTodo = async () => {
     const valueAddTodo = this.inputAddTodo.current.value
 
     if (valueAddTodo.length === 0) {
@@ -89,20 +80,32 @@ class Todo extends Component {
         tags: this.state.currentTag,
         status: 1
       }
-      this.state.filteredTasks.push(item)
 
-      this.setState({
-        filteredTasks: [...this.state.filteredTasks]
+      this.state.todoList.push(item)
+
+      await this.setState({
+        todoList: [...this.state.todoList],
+      })
+
+      this.inputAddTodo.current.value = ""
+
+      this.setFilteredTasks({
+        tagId: this.state.currentTag,
+        statusId: this.state.currentStatus
       })
     }
   }
 
-  deleteTodo = id => {
-    const newTodoList = this.state.filteredTasks.filter(item => item.id !== id)
-    // console.log(newTodoList);
+  deleteTodo = async id => {
+    const newTodoList = this.state.todoList.filter(item => item.id !== id)
 
-    this.setState({
-      filteredTasks: [...newTodoList]
+    await this.setState({
+      todoList: [...newTodoList]
+    })
+
+    this.setFilteredTasks({
+      tagId: this.state.currentTag,
+      statusId: this.state.currentStatus
     })
   }
 
@@ -116,9 +119,6 @@ class Todo extends Component {
   }
 
   onKeyEnter = event => {
-    // console.log(event.keyCode);
-    // event.keyCode === 13 ? this.addTodo() : ''
-
     if (event.keyCode === 13) {
       this.addTodo()
     }
@@ -156,7 +156,6 @@ class Todo extends Component {
                 setCurrentStatus: this.setCurrentStatus
               }}
             >
-
               <div className="todo__body__main__top">
                 <Tags/>
               </div>
@@ -173,7 +172,6 @@ class Todo extends Component {
                   counter={this.counter}
                 />
               </div>
-
             </MyTodoContext.Provider>
           </div>
         </div>

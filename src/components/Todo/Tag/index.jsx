@@ -35,7 +35,6 @@ class Tags extends Component {
                   />
                 })
               }
-              <li>Reset</li>
             </ul>
           )
         }
