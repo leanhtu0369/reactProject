@@ -95,6 +95,7 @@ class Users extends Component {
 
   componentWillMount() {
     console.log(123456);
+    console.log("xyz123");
     console.log("abc");
     // console.log('componentWillMount')
 
