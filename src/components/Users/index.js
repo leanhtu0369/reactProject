@@ -95,11 +95,8 @@ class Users extends Component {
 
   componentWillMount() {
     console.log(123456);
-<<<<<<< HEAD
     console.log("xyz");
-=======
     console.log("abc");
->>>>>>> b0756f2ab17aef7c7ad2322b8345b0b5158d013e
     // console.log('componentWillMount')
 
     // console.log('componentWillMount start')
